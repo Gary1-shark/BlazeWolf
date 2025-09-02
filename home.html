@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlazeWolf · Home</title>
+  <meta name="description" content="BlazeWolf home - create or join secure rooms." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7c5cff" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script>
+    window.FIREBASE_CONFIG = window.FIREBASE_CONFIG || {"apiKey": "AIzaSyBh7BCMD2tBkmbom90p-YDaBrZF8Ue_4f0", "authDomain": "blazewolf-5a383.firebaseapp.com", "projectId": "blazewolf-5a383", "storageBucket": "blazewolf-5a383.firebasestorage.app", "messagingSenderId": "826364683228", "appId": "1:826364683228:web:6da7f95860a2b403866519", "measurementId": "G-EJWVD6PXHB"};
+    if(!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
+  </script>
+  <script src="script.js" defer></script>
+</head>
+<body onload="bootHomePage()">
+  <header class="topbar glass">
+    <div class="brand">BlazeWolf</div>
+    <nav class="menu">
+      <button class="primary" onclick="openCreateModal()" data-i18n="create_room">Create Room</button>
+      <button class="secondary" onclick="openJoinModal()" data-i18n="join_room">Join Room</button>
+    </nav>
+    <div class="actions">
+      <button class="ghost kebab" id="kebabBtn">⋮</button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <label class="label" data-i18n="language">Language</label>
+        <select id="langSelect"></select>
+        <button id="themeToggle" class="ghost" data-i18n="theme_toggle">Toggle Theme</button>
+        <button class="danger" onclick="logout()" data-i18n="logout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="center">
+    <section class="card glass hero">
+      <h1 id="welcomeTitle" data-i18n="welcome_title">Welcome to BlazeWolf</h1>
+      <p class="muted" data-i18n="welcome_subtitle">Fast, clean and understandable file rooms.</p>
+      <div class="row gap">
+        <button class="primary" onclick="openCreateModal()" data-i18n="create_room">Create Room</button>
+        <button class="secondary" onclick="openJoinModal()" data-i18n="join_room">Join Room</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="createModal" class="glass modal">
+    <h2 data-i18n="create_room">Create Room</h2>
+    <label class="label" data-i18n="room_name">Room Name (required)</label>
+    <input id="roomName" class="input" type="text"/>
+    <label class="label" data-i18n="password_optional">Password (optional)</label>
+    <input id="roomPass" class="input" type="password"/>
+    <div class="row end gap">
+      <button class="ghost" onclick="closeCreateModal()" data-i18n="cancel">Cancel</button>
+      <button class="primary" onclick="createRoom()" data-i18n="create">Create</button>
+    </div>
+  </dialog>
+
+  <dialog id="joinModal" class="glass modal">
+    <h2 data-i18n="join_room">Join Room</h2>
+    <label class="label" data-i18n="enter_code">Enter Access Code</label>
+    <input id="joinCode" class="input" type="text"/>
+    <div id="passWrapper" style="display:none">
+      <label class="label" data-i18n="password">Password</label>
+      <input id="joinPass" class="input" type="password"/>
+    </div>
+    <div class="row end gap">
+      <button class="ghost" onclick="closeJoinModal()" data-i18n="cancel">Cancel</button>
+      <button class="primary" onclick="joinRoom()" data-i18n="enter">Enter</button>
+    </div>
+  </dialog>
+</body>
+</html>

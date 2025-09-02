@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlazeWolf · Room</title>
+  <meta name="description" content="BlazeWolf room - upload and share files by uploader-folder." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7c5cff" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script>
+    window.FIREBASE_CONFIG = window.FIREBASE_CONFIG || {"apiKey": "AIzaSyBh7BCMD2tBkmbom90p-YDaBrZF8Ue_4f0", "authDomain": "blazewolf-5a383.firebaseapp.com", "projectId": "blazewolf-5a383", "storageBucket": "blazewolf-5a383.firebasestorage.app", "messagingSenderId": "826364683228", "appId": "1:826364683228:web:6da7f95860a2b403866519", "measurementId": "G-EJWVD6PXHB"};
+    if(!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
+  </script>
+  <script src="script.js" defer></script>
+</head>
+<body onload="bootRoomPage()">
+  <header class="topbar glass">
+    <div class="brand">BlazeWolf</div>
+    <div class="actions">
+      <button class="ghost" onclick="goHome()" data-i18n="back_home">Back to Home</button>
+      <button class="ghost kebab" id="kebabBtn">⋮</button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <label class="label" data-i18n="language">Language</label>
+        <select id="langSelect"></select>
+        <button id="themeToggle" class="ghost" data-i18n="theme_toggle">Toggle Theme</button>
+        <button class="danger" onclick="logout()" data-i18n="logout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="room-grid">
+    <section class="glass card">
+      <h2 id="roomHeader">Room</h2>
+      <p class="muted"><span data-i18n="room_code">Room Code:</span> <strong id="roomCodeView">-</strong></p>
+      <div class="row gap wrap">
+        <input id="fileInput" class="input" type="file" multiple/>
+        <button class="primary" onclick="uploadFiles()" data-i18n="upload">Upload</button>
+      </div>
+      <div id="fileList" class="list"></div>
+    </section>
+    <aside class="glass card">
+      <h3 data-i18n="notes">Notes</h3>
+      <textarea id="notes" class="input" rows="8" placeholder="Type notes..."></textarea>
+      <div class="row end gap">
+        <button class="secondary" onclick="saveNotes()" data-i18n="save">Save</button>
+      </div>
+      <p class="muted" id="saveInfo"></p>
+    </aside>
+  </main>
+</body>
+</html>

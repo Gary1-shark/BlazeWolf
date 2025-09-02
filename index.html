@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlazeWolf · Login</title>
+  <meta name="description" content="BlazeWolf — elegant file rooms with Google login, password rooms, folders per uploader." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7c5cff" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+  <script>
+    // Firebase config (embedded per request)
+    window.FIREBASE_CONFIG = {"apiKey": "AIzaSyBh7BCMD2tBkmbom90p-YDaBrZF8Ue_4f0", "authDomain": "blazewolf-5a383.firebaseapp.com", "projectId": "blazewolf-5a383", "storageBucket": "blazewolf-5a383.firebasestorage.app", "messagingSenderId": "826364683228", "appId": "1:826364683228:web:6da7f95860a2b403866519", "measurementId": "G-EJWVD6PXHB"};
+    // Initialize (compat)
+    if (!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
+  </script>
+
+  <script src="script.js" defer></script>
+</head>
+<body onload="bootAuthPage()">
+  <header class="topbar glass">
+    <div class="brand">BlazeWolf</div>
+    <div class="actions">
+      <button class="ghost kebab" id="kebabBtn">⋮</button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <label class="label" data-i18n="language">Language</label>
+        <select id="langSelect"></select>
+        <button id="themeToggle" class="ghost" data-i18n="theme_toggle">Toggle Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="center">
+    <section class="card glass auth">
+      <div class="tabs">
+        <button id="tabLogin" class="tab active" data-i18n="login">Login</button>
+        <button id="tabRegister" class="tab" data-i18n="register">Register</button>
+      </div>
+      <div class="card-body">
+        <label class="label" data-i18n="username">Username</label>
+        <input id="username" class="input" type="text" placeholder="username" />
+        <label class="label" data-i18n="password">Password</label>
+        <input id="password" class="input" type="password" placeholder="******" />
+        <button id="submitAuth" class="primary w-full" data-i18n="login">Login</button>
+        <div class="divisor"><span>or</span></div>
+        <button id="googleBtn" class="secondary w-full">Continue with Google</button>
+        <p class="muted" id="switchHint">
+          <span data-i18n="no_account">Don't have an account?</span>
+          <a href="#" id="switchLink" class="link" data-i18n="register_here">Register here</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(function(){});
+    }
+  </script>
+</body>
+</html>

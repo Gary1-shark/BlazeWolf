@@ -1,0 +1,15 @@
+{
+  "name": "BlazeWolf",
+  "short_name": "BlazeWolf",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0c0c12",
+  "theme_color": "#7c5cff",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
